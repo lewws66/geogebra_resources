@@ -51,5 +51,86 @@ var applet = new GGBApplet(parameters, '5.0', views);
 window.onload = function() {applet.inject('ggbApplet')};
 applet.setPreviewImage('data:image/gif;base64,R0lGODlhAQABAAAAADs=','https://www.geogebra.org/images/GeoGebra_loading.png','https://www.geogebra.org/images/applet_play.png');
 </script>
+  parameters.appletOnLoad = function(api) {
+var strLength = 150;
+var textarea1 = document.getElementsByName("textarea1")[0];
+var textarea2 = document.getElementsByName("textarea2")[0];
+var consState = document.getElementsByName("consState")[0];
+    function addListener(objName) { 
+	    textarea1.value = "add: " + objName + "\n" + textarea1.value.substring(0, strLength );	
+	    printConstructionState();
+    }
+
+    function removeListener(objName) {
+	    textarea1.value = "remove: " + objName + "\n" + textarea1.value.substring(0, strLength );	
+	    printConstructionState();
+    }
+
+    function renameListener(oldObjName, newObjName) {
+	    textarea1.value = "rename: " + objName + "\n" + textarea1.value.substring(0, strLength );	
+	    printConstructionState();
+    }
+
+    function updateListener(objName) {
+	    strVal = api.getValueString(objName);
+	    textarea2.value = strVal + "\n" + textarea2.value.substring(0, strLength );
+    }
+
+    function clearListener() {
+	    textarea1.value = "";
+	    textarea2.value = "";
+	    textarea1.value = "construction cleared";
+	    consState.value = "";
+    }
+
+    function printConstructionState() {
+	    var objNumber = api.getObjectNumber();
+	    var strState = "Number of objects: " + objNumber;
+	    for (i=0; i < objNumber; i++) {
+		    strName = api.getObjectName(i);
+		    strType = api.getObjectType(strName);
+		    strCommand = api.getCommandString(strName);
+		    strState += "\n" + strType + " " + strName + ", " + strCommand;
+	    }
+	    consState.value = strState;
+  }
+	// register add, remove, rename and update listeners
+	api.registerAddListener(addListener);
+	api.registerRemoveListener(removeListener);
+	api.registerRenameListener(renameListener);
+	api.registerClearListener(clearListener);
+	api.registerUpdateListener(updateListener);
+}
+
+        var applet = new GGBApplet({filename:"ggb/color2.ggb","showtoolbar":true},true);
+    //  var applet = new GGBApplet(parameters,true);
+    //  when used with Math Apps Bundle, uncomment this:
+        applet.setHTML5Codebase('GeoGebra/HTML5/5.0/web3d/');
+
+	window.onload = function() {
+               applet.inject('applet_container');
+        }
+      </script>
+      <p></p>
+<div id="applet_container"></div>
+      
+
+        <h5>Construction State Listening</h5>
+
+        <div style="float: left;margin-right:24px" class="text">
+	  <label>Update:</label>
+			  <textarea class="inputfield" name="textarea2" cols="35" rows="5"></textarea>
+
+			<label>Add, Remove, Rename:</label>
+      	        <textarea class="inputfield" name="textarea1" cols="35" rows="5"></textarea>
+
+		  </div>
+		  <div style="float: left; padding-top:6px">
+              <label>Current Construction State:</label>
+              <textarea class="inputfield" style="height:250px" name="consState" cols="35" rows="14"></textarea>
+        </div>
+<style>label{display:block}</style>
+</table>
+
 </body>
 </html>
