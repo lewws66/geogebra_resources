@@ -16,7 +16,7 @@ var parameters = {
 "height":400,
 "showMenuBar":false,
 "showAlgebraInput":false,
-"showToolBar":false,
+"showToolBar":true,
 "customToolBar":"0 39 73 62 | 1 501 67 , 5 19 , 72 75 76 | 2 15 45 , 18 65 , 7 37 | 4 3 8 9 , 13 44 , 58 , 47 | 16 51 64 , 70 | 10 34 53 11 , 24 20 22 , 21 23 | 55 56 57 , 12 | 36 46 , 38 49 50 , 71 14 68 | 30 29 54 32 31 33 | 25 17 26 60 52 61 | 40 41 42 , 27 28 35 , 6 | 100016 100012 100013 100011 100002 100003 100004 100008 100007 100010 100009 100014 100015 100001 100006",
 "showToolBarHelp":false,
 "showResetIcon":false,
@@ -50,9 +50,9 @@ var views = {'is3D': 1,'AV': 0,'SV': 0,'CV': 0,'EV2': 0,'CP': 0,'PC': 0,'DA': 0,
 var applet = new GGBApplet(parameters, '5.0', views);
 window.onload = function() {applet.inject('ggbApplet')};
 applet.setPreviewImage('data:image/gif;base64,R0lGODlhAQABAAAAADs=','https://www.geogebra.org/images/GeoGebra_loading.png','https://www.geogebra.org/images/applet_play.png');
- </script>
+</script>
 
- <script>
+<script>
 parameters.appletOnLoad = function(api) {
 var strLength = 150;
 var textarea1 = document.getElementsByName("textarea1")[0];
@@ -104,8 +104,8 @@ var consState = document.getElementsByName("consState")[0];
 	api.registerUpdateListener(updateListener);
 }
 
-        var applet = new GGBApplet({filename:"ggb/color2.ggb","showtoolbar":true},true);
-    //  var applet = new GGBApplet(parameters,true);
+    //var applet = new GGBApplet({filename:"ggb/color2.ggb","showtoolbar":true},true);
+       var applet = new GGBApplet(parameters,true);
     //  when used with Math Apps Bundle, uncomment this:
         applet.setHTML5Codebase('GeoGebra/HTML5/5.0/web3d/');
 
