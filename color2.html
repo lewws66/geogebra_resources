@@ -21,13 +21,13 @@ var parameters = {
 "showToolBarHelp":false,
 "showResetIcon":false,
 "enableLabelDrags":false,
-"enableShiftDragZoom":true,
+"enableShiftDragZoom":false,
 "enableRightClick":false,
 "errorDialogsActive":false,
 "useBrowserForJS":false,
 "allowStyleBar":false,
 "preventFocus":false,
-"showZoomButtons":true,
+"showZoomButtons":false,
 "capturingThreshold":3,
 // add code here to run when the applet starts
 "appletOnLoad":function(api){ /* api.evalCommand('Segment((1,2),(3,4))');*/ },
@@ -104,7 +104,7 @@ var consState = document.getElementsByName("consState")[0];
 	api.registerUpdateListener(updateListener);
 }
 
-     var applet = new GGBApplet({filename:"ggb/color2.ggb","showtoolbar":true},true);
+   //  var applet = new GGBApplet({filename:"ggb/color2.ggb","showtoolbar":true},true);
    //  var applet = new GGBApplet(parameters,true);
     //  when used with Math Apps Bundle, uncomment this:
    //   applet.setHTML5Codebase('GeoGebra/HTML5/5.0/web3d/');
